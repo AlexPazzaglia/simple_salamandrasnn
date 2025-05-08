@@ -10,51 +10,39 @@ def network_parameters():
             'V_rest'     : [-70.0, 'mV'],
             'V_reset'    : [-70.0, 'mV'],
             'V_thres'    : [-38.0, 'mV'],
-
-            'tau_memb'  : [150.0, 'ms'],
-            'w_ampa'    : [  6.0,   ''],
-            'w_nmda'    : [  1.5,   ''],
-            'w_glyc'    : [ 10.0,   ''],
         }
 
     # Axial neurons
     variable_neural_params_axs = {
-            'gleak'     : [   5.6,   ''],
-            'alpha1'    : [  45.0,   ''],
-            'alpha2'    : [  15.0,   ''],
-            'tau1'      : [ 150.0, 'ms'],
-            'tau2'      : [2000.0, 'ms'],
-            'delta_w1'   : [  0.99, 'mV'],
-            'delta_w2'   : [ 0.025, 'mV'],
-            'R_memb'     : [[89.0*1e6, 91.0*1e6], 'ohm'],
-        }
+            'tau_memb'  : [    25.0, 'ms'],
+            'tau1'      : [   150.0, 'ms'],
+            'delta_w1'  : [     0.5, 'nA'],
+            'R_memb'    : [[15.5, 16.5], 'Mohm'],
 
+            'w_ex'    : [ 0.10,   ''],
+            'w_in'    : [ 0.15,   ''],
+        }
+    
     # Limb neurons
     variable_neural_params_lmb = {
-            'gleak'     : [   4.4,   ''],
-            'alpha1'    : [  25.0,   ''],
-            'alpha2'    : [  15.0,   ''],
-            'tau1'      : [ 400.0, 'ms'],
-            'tau2'      : [3200.0, 'ms'],
-            'delta_w1'   : [  0.65, 'mV'],
-            'delta_w2'   : [ 0.025, 'mV'],
-            'R_memb'     : [[85.0*1e6, 86.0*1e6], 'ohm'],
+            'tau_memb'  : [     35.0, 'ms'],
+            'tau1'      : [    400.0, 'ms'],
+            'delta_w1'  : [     0.2,  'nA'], # 0.2
+            'R_memb'    : [[19.0, 20.0], 'Mohm'],
+
+            'w_ex'    : [ 0.15,   ''],
+            'w_in'    : [ 0.20,   ''],
         }
 
     # Shared synaptic parameters stored in neurons
     shared_syn_ex_params = {
-            'E_ampa'     : [ 0.0,  'mV'],
-            'E_nmda'     : [ 0.0,  'mV'],
-            'deltag_ampa': [ 0.1,    ''],
-            'deltag_nmda': [ 0.1,    ''],
-            'tau_ampa'   : [20.0,  'ms'],
-            'tau_nmda'   : [100.0, 'ms'],
+            'E_ex'     : [ 0.0,  'mV'],
+            'tau_ex'   : [20.0,  'ms'],
         }
 
     shared_syn_in_params = {
-            'E_glyc'     : [-85.0, 'mV'],
-            'deltag_glyc': [  0.1,   ''],
-            'tau_glyc'   : [ 20.0, 'ms'],
+            'E_in'     : [-85.0, 'mV'],
+            'tau_in'   : [ 20.0, 'ms'],
         }
 
     return (

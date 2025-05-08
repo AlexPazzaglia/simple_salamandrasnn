@@ -21,6 +21,7 @@ import equations
 import parameters
 import connections
 import plotting
+import time
 
 class SimulationSNN():
 
@@ -205,7 +206,7 @@ class SimulationSNN():
         ''' Define the objects to monitor the variables '''
 
         if self.state_monitor:
-            self.monitored_vars = ('v','w1','w2','I_ampa','I_nmda', 'I_glyc')
+            self.monitored_vars = ('v','w1','I_ex','I_in')
         else:
             self.monitored_vars = ()
 
@@ -217,8 +218,7 @@ class SimulationSNN():
 
         # Initialize variables
         self.pop.v = self.shared_neural_params['V_rest'][0] * b2.mV
-        self.pop.w1 = 0 * b2.mV
-        self.pop.w2 = 0 * b2.mV
+        self.pop.w1 = 0 * b2.nA
 
         # Assign drive current
         pools_el = self.pools_indices['el']
@@ -291,17 +291,17 @@ if __name__ == '__main__':
     # Simulation parameters
     LOAD_CONNECTIVITY = False
     SAVE_CONNECTIVITY = False
-    CONNECTIVITY_FILE = 'network_implementations/2_Knusel2013/LIF_Knusel2013.npy'
+    CONNECTIVITY_FILE = 'network_connectivity.npy'
 
     TIMESTEP = 1 * b2.ms
     DURATION = 10 * b2.second
 
-    DRIVE_CURRENT = 5.0 * b2.nA
+    DRIVE_CURRENT = 4.0 * b2.nA
 
     N_EX_HEMISEG = 25
     N_IN_HEMISEG = 20
 
-    SEG_AXIAL = 16           # 16
+    SEG_AXIAL = 16          # 16
     LIMBS_POSITIONS = [0, 8]    # [0,8]
 
     STATE_MONITOR = False
@@ -334,7 +334,14 @@ if __name__ == '__main__':
     )
 
     # Run simulation
+    start_time = time.time()
     simulation.simulate()
+    end_time = time.time()
+    print(f"Simulation completed in {end_time - start_time:.2f} seconds.")
+
+    real_time_fraction = float( DURATION / (end_time - start_time) ) * 100
+    print(f"Real time fraction: {real_time_fraction:.2f} %")
+
 
     # Plot results
     simulation.plot_results()

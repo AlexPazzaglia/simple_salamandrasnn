@@ -18,6 +18,7 @@ simplenv/
 dist/
 build/
 *.egg
+*.npy
 
 # Installer logs
 pip-log.txt
